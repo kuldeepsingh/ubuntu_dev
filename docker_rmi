@@ -1,0 +1,10 @@
+
+IMAGE=$1
+
+if [ "$IMAGE" == "" ] ; then
+  echo "Missing image argument"
+  exit 2
+fi
+
+sudo docker ps -qa -f "ancestor=$IMAGE" | xargs sudo docker rm
+sudo docker rmi $IMAGE
